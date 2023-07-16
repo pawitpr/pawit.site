@@ -1,0 +1,126 @@
+---
+title: Nodejs Port Forwarding
+description: Open Source Solution for Port Forwarding HTTP
+date: "2021-03-16"
+repository: pawitpr/portforward-nodejs
+published: true
+---
+![PortForwardImage](/portforward-ss.png "Demo")
+
+
+
+# What is Port Forwarding
+Port forwarding is a technique used to redirect network traffic from one port to another, allowing access to a specific service or application running on a remote machine. In the case of HTTP, port forwarding enables access to web servers hosted on private networks.
+## Markets
+When it comes to open source solutions for port forwarding HTTP, one popular option is ngrok. Ngrok is a lightweight command-line tool that creates secure tunnels to expose local servers to the internet. 
+for that i decided to make a new portforwarder.
+
+# My port forwarder
+Introducing an open source port forwarding service, a simple tool that allows users to redirect network traffic from one port to another, thereby enabling access to specific services or applications hosted on remote machines. This open source solution provides developers and network administrators with the flexibility and control they need to manage their port forwarding requirements effectively.
+
+### Project Information
+The project use WebSocket for realible ulimilted connection at server,
+the project is very small not production ready use at your risk
+
+# Client Side
+
+
+```hcl
+soket.on('connect', function(){
+    console.log('Client is connected ')
+});
+
+soket.on('disconnect', function(){
+    console.log('Client is disconnected ')
+});
+
+soket.on('page-request', function(data){
+    var path = data.pathname;
+    var method = data.method;
+    var params = data.params;
+    // this is new var
+    var localhostUrl = hostToLive + path;
+    if(method == "get")executeGet(localhostUrl,params);
+    else if(method == "post")executePost(localhostUrl,params);
+
+});
+function executeGet(url,params) {
+    axios.get(url, {params})
+    .then(response => {
+        soket.emit('page-response', response.status === 200 ? response.data : JSON.stringify({ error: '404 Not Found' }));
+    })
+    .catch(err => {
+        console.log(err);
+        soket.emit('page-response', JSON.stringify({ error: err.message }));
+    });
+}
+
+function executePost(url,params) {
+    axios.post(url, params)
+    .then(response => {
+        soket.emit('page-response', response.status === 200 ? response.data : JSON.stringify({ error: '404 Not Found' }));
+    })
+    .catch(err => {
+        console.log(err);
+        soket.emit('page-response', JSON.stringify({ error: err.message }));
+    });
+}
+```
+
+> You can see the GET/POST request transfer to server
+
+## Server Side
+
+```hcl
+const url = require("url");
+
+// Uses a Body parser that is old pakages
+const bodyparser = require('body-parser')
+app.use(bodyparser)
+
+var clientResponseRef;
+app.get('/*', (req, res) => {
+    var pathname = url.parse(req.url).pathname;
+
+    var obj = {
+        pathname: pathname,
+        method: "get",
+        params: req.query
+    }
+
+    io.emit("page-request", obj);
+    clientResponseRef = res;
+})
+
+app.post('/*', (req, res) => {
+    var pathname = url.parse(req.url).pathname;
+
+    var obj = {
+        pathname: pathname,
+        method: "post",
+        params: req.body
+    }
+
+    io.emit("page-request", obj);
+    clientResponseRef = res;
+})
+
+
+io.on('connection', (socket) => {
+    console.log('a node connected');
+    socket.on("page-response", (response) => {
+        clientResponseRef.send(response);
+    })
+})
+
+var server_port = process.env.YOUR_PORT || process.env.PORT || 5000;
+http.listen(server_port, () => {
+    console.log('Listen on *:' + server_port);
+})
+```
+
+It's a simple mechanism, if you wanna try over the internet the [Server](https://sssa-unu4.onrender.com/) is aleardy hosted 
+
+
+# Demo Video
+https://www.youtube.com/watch?v=Iyy6eTH16bc&t=6s
