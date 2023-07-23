@@ -1,0 +1,51 @@
+---
+title: "tcp/udp over http"
+description: Make your internet service over http/s like proxy
+date: "2023-05-17"
+repository: jpillora/chisel
+published: true
+---
+
+
+# What is?
+TCP/UDP tunnel over HTTP is a networking technique that enables the encapsulation of TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) traffic within HTTP (Hypertext Transfer Protocol) requests and responses. This method is used to bypass restrictions or firewalls that might block direct TCP/UDP connections and allows these protocols to traverse networks that primarily allow HTTP traffic.
+
+# Demo Video
+![Video]( "a video")
+[![Video]({https://fcdn.pawit.site/pri/UDP.png})]({https://youtu.be/l1BxX2EmWpA} "Demo Video")
+
+
+## Prop and Crons
+P.
++ Forward any portocol to http [Port Forwarding](https://en.wikipedia.org/wiki/Port_forwarding) without NAT?ROUTER
+  Easy to use no configuration required
+  Forward Sock5
+
+C.
++  Not Fast as UDP
+   No connectionless
+  
+
+## How its work
+![how](https://werblog.github.io/images/tunnel.png "a work")
+
+
+## Set-up
+Server which want 4040 tcp echo server
+```bash
+    go install github.com/jpillora/chisel@latest # Go 1.2+
+    chisel server --port 8080 # Asume the ip address of server is 192.168.0.11 and server is running
+
+```
+Client which have 4040 TCP echo server
+
+```bash
+
+  chisel client https://192.168.0.11:8080 4040 ## Tunneling 4040 Localhost port to Server localhost:4040
+```
+
+I hope you will understand
+
+
+  
+  
