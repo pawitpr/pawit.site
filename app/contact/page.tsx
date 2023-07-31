@@ -7,7 +7,7 @@ import { Card } from "../components/card";
 const socials = [
 	{
 		icon: <Twitter size={20} />,
-		href: "https://twitter.com/pawits_",
+		href: "https://dub.sh/tpawit",
 		label: "Twitter",
 		handle: "@pawits_",
 	},
