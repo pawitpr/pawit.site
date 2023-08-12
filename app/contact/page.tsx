@@ -1,5 +1,5 @@
 "use client";
-import { Github, Mail, Twitter } from "lucide-react";
+import { Github, Mail, Twitter,Smartphone  } from "lucide-react";
 import Link from "next/link";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
@@ -23,6 +23,13 @@ const socials = [
 		label: "Github",
 		handle: "pawitpr",
 	},
+	{
+		icon: <Smartphone size={20} />,
+		href: "wa.me/917586073",
+		label: "Contact ",
+		handle: "+919175861.",
+	},
+	
 ];
 
 export default function Example() {
