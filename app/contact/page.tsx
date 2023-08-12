@@ -25,9 +25,9 @@ const socials = [
 	},
 	{
 		icon: <Smartphone size={20} />,
-		href: "wa.me/917586073",
-		label: "Contact ",
-		handle: "+919175861.",
+		href: "https://wa.me/917586073",
+		label: "WhatApp",
+		handle: "PawitSahare",
 	},
 	
 ];
