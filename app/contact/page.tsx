@@ -1,5 +1,5 @@
 "use client";
-import { Github, Mail, Instagram,Compass  } from "lucide-react";
+import { Github, Mail, Instagram,BadgeCent } from "lucide-react";
 import Link from "next/link";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
@@ -18,8 +18,8 @@ const socials = [
 		handle: "p@pawit.site",
 	},
 	{
-		icons: <Compass size={20}/>,
-		href: "bento.me/pawit",
+		icons: <BadgeCent /> size={20}/>,
+		href: "https://bento.me/pawit",
 		label: "Social",
 		handle: "@all",
 	}
@@ -29,7 +29,7 @@ const socials = [
 
 export default function Example() {
 	return (
-		<div className=" bg-gradient-to-tl from-neutral-900/0 via-neutral-900 to-neutral-950/0">
+		<div className=" bg-gradient-to-tl from-neutral-900/0 via-neutral-900 to-neutral-950/0 ">
 			<Navigation />
 			<div className="container flex items-center justify-center min-h-screen px-4 mx-auto">
 				<div className="grid w-full grid-cols-1 gap-8 mx-auto mt-32 sm:mt-0 sm:grid-cols-3 lg:gap-16">
