@@ -62,10 +62,7 @@ export default function RootLayout({
 	
 	return (
 		<html lang="en">
-			<head>
-				<Analytics />
-			</head>
-			<body className={ProText.className bg-black}>{children}</body>
-		</html>
+		<body className={ProText.className bg-black}>{children}</body>
+	  </html>
 	);
 }
