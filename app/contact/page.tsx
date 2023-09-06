@@ -1,5 +1,5 @@
 "use client";
-import { Github, Mail, Instagram,BadgeCent } from "lucide-react";
+import { Github, Mail, Instagram,Compass } from "lucide-react";
 import Link from "next/link";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
@@ -18,7 +18,8 @@ const socials = [
 		handle: "p@pawit.site",
 	},
 	{
-		icons: <BadgeCent  size={20}/>,
+		icons: <Compass
+ size={20}/>,
 		href: "https://bento.me/pawit",
 		label: "Social",
 		handle: "@all",
