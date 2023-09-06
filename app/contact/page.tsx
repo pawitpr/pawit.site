@@ -18,7 +18,7 @@ const socials = [
 		handle: "p@pawit.site",
 	},
 	{
-		icons: <BadgeCent /> size={20}/>,
+		icons: <BadgeCent  size={20}/>,
 		href: "https://bento.me/pawit",
 		label: "Social",
 		handle: "@all",
