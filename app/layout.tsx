@@ -48,9 +48,14 @@ export const metadata: Metadata = {
 };
 
 
-const San = LocalFont({
-	src: "./FreeSans.tff",
-	
+const inter = Inter({
+	subsets: ["latin"],
+	variable: "--font-inter",
+});
+
+const calSans = LocalFont({
+	src: "../public/fonts/CalSans-SemiBold.ttf",
+	variable: "--font-calsans",
 });
 
 export default function RootLayout({
@@ -61,8 +66,17 @@ export default function RootLayout({
 
 	
 	return (
-		<html lang="en">
-		<body className={ProText.className bg-black}>{children}</body>
-	  </html>
+		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
+			<head>
+				<Analytics />
+			</head>
+			<body
+				className={`bg-black ${
+					process.env.NODE_ENV === "development" ? "debug-screens" : undefined
+				}`}
+			>
+				{children}
+			</body>
+		</html>
 	);
 }
