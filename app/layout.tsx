@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 		siteName: "pawit.site",
 		images: [
 			{
-				url: "https://pawit.site/og.png",
+				url: "https://pawit.site/pawit-banner.png",
 				width: 1920,
 				height: 1080,
 			},
@@ -46,14 +46,11 @@ export const metadata: Metadata = {
 		shortcut: "/favicon.png",
 	},
 };
-const inter = Inter({
-	subsets: ["latin"],
-	variable: "--font-inter",
-});
 
-const calSans = LocalFont({
-	src: "../public/fonts/CalSans-SemiBold.ttf",
-	variable: "--font-calsans",
+
+const San = LocalFont({
+	src: "./FreeSans.tff",
+	
 });
 
 export default function RootLayout({
@@ -64,17 +61,11 @@ export default function RootLayout({
 
 	
 	return (
-		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
+		<html lang="en">
 			<head>
 				<Analytics />
 			</head>
-			<body
-				className={`bg-black ${
-					process.env.NODE_ENV === "development" ? "debug-screens" : undefined
-				}`}
-			>
-				{children}
-			</body>
+			<body className={ProText.className bg-black}>{children}</body>
 		</html>
 	);
 }
